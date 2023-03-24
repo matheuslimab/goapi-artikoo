@@ -10,7 +10,7 @@ import (
 
 func main() {
 	config.Carregar()
-	fmt.Println("Starter API")
+	fmt.Println("Starter API on PORT: ", config.Porta)
 
 	r := router.Gerar()
 

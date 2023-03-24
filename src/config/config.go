@@ -23,6 +23,7 @@ func Carregar() {
 	var err error
 
 	if err = godotenv.Load(); err != nil {
+		fmt.Println(".env não foi encontrado!")
 		log.Fatal(err)
 	}
 

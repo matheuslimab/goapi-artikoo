@@ -2,6 +2,7 @@ package rotas
 
 import (
 	"api/src/controllers"
+	"api/src/helpers"
 	"net/http"
 )
 
@@ -37,9 +38,33 @@ var rotasUsuarios = []Rota{
 		RequerAutenticacao: true,
 	},
 	{
-		URI:                "usuarios/{usuarioId}/seguir",
-		Metodo:             http.MethodPost,
-		Funcao:             func(w http.ResponseWriter, r *http.Request) {},
+		URI:                "/usuarios/{usuarioId}/follow",
+		Metodo:             helpers.POST,
+		Funcao:             controllers.SeguirUsuario,
+		RequerAutenticacao: true,
+	},
+	{
+		URI:                "/usuarios/{usuarioId}/unfollow",
+		Metodo:             helpers.POST,
+		Funcao:             controllers.UnFollow,
+		RequerAutenticacao: true,
+	},
+	{
+		URI:                "/usuarios/{usuarioId}/seguidores",
+		Metodo:             helpers.GET,
+		Funcao:             controllers.GetFollowers,
+		RequerAutenticacao: true,
+	},
+	{
+		URI:                "/usuarios/{usuarioId}/seguindo",
+		Metodo:             helpers.GET,
+		Funcao:             controllers.GetFollowing,
+		RequerAutenticacao: true,
+	},
+	{
+		URI:                "/usuarios/{usuarioId}/atualizar-senha",
+		Metodo:             helpers.GET,
+		Funcao:             controllers.AtualizarSenha,
 		RequerAutenticacao: true,
 	},
 }
