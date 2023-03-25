@@ -14,6 +14,8 @@ func main() {
 
 	r := router.Gerar()
 
+	var PORT = 5000
+
 	//log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", config.Porta), r))
-	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", 5000), r))
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", PORT), r))
 }
