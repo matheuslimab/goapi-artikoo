@@ -9,7 +9,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
-var production = false
+var production = true
 var stringConnec string
 
 func Connect() (*sql.DB, error) {
