@@ -1,12 +1,7 @@
-FROM golang:1.20 as builder
-
+FROM golang:1.20 
+RUN mkdir app/
+ADD . /app
 WORKDIR /app
 
-COPY . .
-
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o artikooApi 
-
-FROM scratch
-COPY --from=builder /app/artikooApi /artikooApi
-
-ENTRYPOINT ["/artikooApi"]
+RUN go build -o main .
+CMD ["/app/main"]
