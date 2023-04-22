@@ -12,11 +12,6 @@ import (
 	"net/http"
 )
 
-type Data struct {
-	token string
-	uid   uint64
-}
-
 func Login(w http.ResponseWriter, r *http.Request) {
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
@@ -51,10 +46,5 @@ func Login(w http.ResponseWriter, r *http.Request) {
 
 	token, _ := auth.CreateToken(user_db.ID)
 
-	data := Data{
-		token,
-		user_db.ID,
-	}
-
-	respostas.JSON(w, http.StatusOK, data)
+	w.Write([]byte(token))
 }
