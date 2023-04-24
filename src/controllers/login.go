@@ -12,8 +12,9 @@ import (
 	"net/http"
 )
 
-type Data struct {
-	token string `json:"token"`
+type dataResponse struct {
+	keyAuth string `json:"auth,omitempty"`
+	models.Usuario
 }
 
 func Login(w http.ResponseWriter, r *http.Request) {
@@ -49,6 +50,16 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	}
 
 	token, _ := auth.CreateToken(user_db.ID)
+	userInfos, err := new_repository.BuscarPorID(user_db.ID)
+	if err != nil {
+		respostas.Erro(w, http.StatusUnauthorized, err)
+		return
+	}
 
-	respostas.JSON(w, http.StatusOK, token)
+	dataResponses := dataResponse{
+		token,
+		userInfos,
+	}
+
+	respostas.JSON(w, http.StatusOK, dataResponses)
 }
