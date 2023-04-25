@@ -13,7 +13,7 @@ import (
 )
 
 type dataResponse struct {
-	keyAuth string `json:"auth,omitempty"`
+	token string `json:"token"`
 	models.Usuario
 }
 
