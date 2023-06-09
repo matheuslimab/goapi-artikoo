@@ -16,7 +16,7 @@ var (
 	SecretKey []byte
 )
 
-func Carregar() {
+func LoadConfigs() {
 
 	defer fmt.Println("Iniciando configuração externa...")
 

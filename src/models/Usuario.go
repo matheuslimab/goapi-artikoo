@@ -1,10 +1,11 @@
 package models
 
 import (
-	"api/src/security"
 	"errors"
 	"strings"
 	"time"
+
+	"github.com/matheuslimab/artikoo/api/src/security"
 
 	"github.com/badoux/checkmail"
 )

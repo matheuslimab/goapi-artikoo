@@ -1,4 +1,4 @@
-package respostas
+package entity
 
 import (
 	"encoding/json"

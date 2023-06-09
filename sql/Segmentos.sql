@@ -1,0 +1,35 @@
+CREATE TABLE Segmentos (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(255) NOT NULL
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO Segmentos (nome) VALUES
+  ('Tecnologia da informação'),
+  ('Saúde e bem-estar'),
+  ('Energia e recursos naturais'),
+  ('Educação'),
+  ('Turismo e hospitalidade'),
+  ('Transporte e logística'),
+  ('Agricultura e pecuária'),
+  ('Indústria e manufatura'),
+  ('Finanças e seguros'),
+  ('Varejo e comércio'),
+  ('Telecomunicações'),
+  ('Construção civil e engenharia'),
+  ('Mídia e entretenimento'),
+  ('Moda e vestuário'),
+  ('Alimentos e bebidas'),
+  ('Imobiliário'),
+  ('Serviços jurídicos'),
+  ('Consultoria e gestão'),
+  ('Marketing e publicidade'),
+  ('Meio ambiente e sustentabilidade'),
+  ('Biotecnologia'),
+  ('Farmacêutico'),
+  ('Arte e cultura'),
+  ('Esportes e lazer'),
+  ('Governo e setor público'),
+  ('Organizações sem fins lucrativos'),
+  ('Recursos humanos'),
+  ('Pesquisa e desenvolvimento'),
+  ('Segurança e defesa');

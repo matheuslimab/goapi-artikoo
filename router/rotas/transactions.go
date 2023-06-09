@@ -1,15 +1,16 @@
 package rotas
 
 import (
-	"api/src/controllers"
 	"net/http"
+
+	"github.com/matheuslimab/artikoo/api/internal/entity"
 )
 
 var rotaTransactions = []Rota{
 	{
 		URI:                "/createTransaction",
 		Metodo:             http.MethodPost,
-		Funcao:             controllers.CreateTransaction,
+		Funcao:             entity.CreateTransaction,
 		RequerAutenticacao: false,
 	},
 }

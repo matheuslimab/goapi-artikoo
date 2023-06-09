@@ -1,15 +1,16 @@
 package main
 
 import (
-	"api/src/config"
-	"api/src/router"
 	"fmt"
 	"log"
 	"net/http"
+
+	"github.com/matheuslimab/artikoo/api/config"
+	"github.com/matheuslimab/artikoo/api/router"
 )
 
 func main() {
-	config.Carregar()
+	config.LoadConfigs()
 	fmt.Println("Starter API on PORT: ", config.Porta)
 
 	r := router.Gerar()

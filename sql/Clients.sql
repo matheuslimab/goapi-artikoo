@@ -1,0 +1,23 @@
+CREATE TABLE `Clients` (
+  `id_client` varchar(255) NOT NULL,
+  `type_client` int(11) DEFAULT NULL COMMENT '1 = fisica , 2 = juridica',
+  `nome_razao_social_client` varchar(200) DEFAULT NULL,
+  `cpf_cnpj_client` varchar(50) DEFAULT NULL,
+  `rg_ie_client` varchar(50) DEFAULT NULL,
+  `data_nascimento_dataFundacao_client` varchar(50) DEFAULT NULL,
+  `endereco_client` varchar(200) DEFAULT NULL,
+  `telefone_client` varchar(50) DEFAULT NULL,
+  `celular_client` varchar(50) DEFAULT NULL,
+  `email_client` varchar(100) DEFAULT NULL,
+  `site_client` varchar(255) DEFAULT NULL,
+  `contato_principal_client` varchar(100) DEFAULT NULL,
+  `segmento_de_atuacao_client` int(11) DEFAULT NULL,
+  `limite_credito_client` int(11) DEFAULT NULL,
+  `condicoes_pagamento_client` varchar(100) DEFAULT NULL,
+  `status_cliente_client` int(11) DEFAULT NULL,
+  `observacao_client` text DEFAULT NULL,
+  `created_at` datetime DEFAULT current_timestamp(),
+  `update_at` datetime DEFAULT current_timestamp(),
+  `empresaID_clients` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

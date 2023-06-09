@@ -1,13 +1,14 @@
 package auth
 
 import (
-	"api/src/config"
 	"errors"
 	"fmt"
 	"net/http"
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/matheuslimab/artikoo/api/config"
 
 	jwt "github.com/dgrijalva/jwt-go"
 )

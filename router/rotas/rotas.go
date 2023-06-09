@@ -1,8 +1,9 @@
 package rotas
 
 import (
-	"api/src/middlewares"
 	"net/http"
+
+	"github.com/matheuslimab/artikoo/api/src/middlewares"
 
 	"github.com/gorilla/mux"
 )
@@ -20,6 +21,7 @@ func Configurar(r *mux.Router) *mux.Router {
 	rotas = append(rotas, rotaLogin)
 	rotas = append(rotas, rotasPublicacoes...)
 	rotas = append(rotas, rotaTransactions...)
+	rotas = append(rotas, rotaClients...)
 
 	for _, rota := range rotas {
 		if rota.RequerAutenticacao {

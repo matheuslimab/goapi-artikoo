@@ -1,11 +1,12 @@
 package helpers
 
 import (
-	"api/src/respostas"
 	"crypto/rand"
 	"encoding/base64"
 	"fmt"
 	"net/http"
+
+	pkgEntity "github.com/matheuslimab/artikoo/api/pkg/entity"
 )
 
 const POST = http.MethodPost
@@ -35,7 +36,7 @@ func GenereteNewSecreteKey() (string, error) {
 
 func Err(w http.ResponseWriter, status int, err error) {
 	if err != nil {
-		respostas.Erro(w, http.StatusInternalServerError, err)
+		pkgEntity.Erro(w, http.StatusInternalServerError, err)
 		return
 	}
 }

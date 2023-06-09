@@ -1,8 +1,9 @@
 package repository
 
 import (
-	"api/src/models"
 	"database/sql"
+
+	"github.com/matheuslimab/artikoo/api/src/models"
 )
 
 type publicacoesDB struct {

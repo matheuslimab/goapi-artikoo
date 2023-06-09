@@ -1,10 +1,11 @@
 package repository
 
 import (
-	"api/src/models"
 	"database/sql"
 	"fmt"
 	"log"
+
+	"github.com/matheuslimab/artikoo/api/src/models"
 )
 
 var err error
