@@ -22,7 +22,7 @@ type Clients struct {
 
 	Site_client                string `json:"site_client"`
 	Contato_principal_client   string `json:"contato_principal_client"`
-	Segmento_de_atuacao_client uint64 `json:"segmento_de_atuacao_client"`
+	Segmento_de_atuacao_client string `json:"segmento_de_atuacao_client"`
 
 	Limite_credito_client      string `json:"limite_credito_client"`
 	Condicoes_pagamento_client string `json:"condicoes_pagamento_client"`
