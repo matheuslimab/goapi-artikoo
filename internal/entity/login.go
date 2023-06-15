@@ -5,11 +5,11 @@ import (
 	"io/ioutil"
 	"net/http"
 
+	"github.com/matheuslimab/artikoo/api/internal/infra/repository"
 	pkgEntity "github.com/matheuslimab/artikoo/api/pkg/entity"
 	"github.com/matheuslimab/artikoo/api/src/auth"
 	"github.com/matheuslimab/artikoo/api/src/database"
 	"github.com/matheuslimab/artikoo/api/src/models"
-	"github.com/matheuslimab/artikoo/api/src/repository"
 	"github.com/matheuslimab/artikoo/api/src/security"
 )
 
@@ -19,6 +19,19 @@ type dataResponse struct {
 }
 
 func Login(w http.ResponseWriter, r *http.Request) {
+
+	err := pkgEntity.AuthUserAPI(r)
+	if err != nil {
+		pkgEntity.Erro(w, http.StatusUnauthorized, err)
+		return
+	}
+
+	err = pkgEntity.AuthorizeHeaderRequest(w, r)
+	if err != nil {
+		pkgEntity.Erro(w, http.StatusUnauthorized, err)
+		return
+	}
+
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		pkgEntity.Erro(w, http.StatusBadRequest, err)

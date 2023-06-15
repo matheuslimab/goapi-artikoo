@@ -13,7 +13,7 @@ import (
 	"github.com/matheuslimab/artikoo/api/src/models"
 )
 
-func GetAllClients(w http.ResponseWriter, r *http.Request) {
+func GetAllYourCompany(w http.ResponseWriter, r *http.Request) {
 	err := pkgEntity.AuthUserAPI(r)
 	if err != nil {
 		pkgEntity.Erro(w, http.StatusUnauthorized, err)
@@ -30,18 +30,17 @@ func GetAllClients(w http.ResponseWriter, r *http.Request) {
 	helpers.Err(w, http.StatusInternalServerError, err)
 	defer db.Close()
 
-	new_repository := repository.NewRepositoryClient(db)
-	clients, err := new_repository.GetAllClients()
+	new_repository := repository.NewRepositoryYourCompany(db)
+	companies, err := new_repository.GetCompanies()
 	if err != nil {
 		pkgEntity.Erro(w, http.StatusInternalServerError, err)
 		return
 	}
 
-	pkgEntity.JSON(w, http.StatusOK, clients)
+	pkgEntity.JSON(w, http.StatusOK, companies)
 }
 
-func GetClient(w http.ResponseWriter, r *http.Request) {
-
+func GetYourCompany(w http.ResponseWriter, r *http.Request) {
 	err := pkgEntity.AuthUserAPI(r)
 	if err != nil {
 		pkgEntity.Erro(w, http.StatusUnauthorized, err)
@@ -55,27 +54,22 @@ func GetClient(w http.ResponseWriter, r *http.Request) {
 	}
 
 	parametros := mux.Vars(r)
-	// clientID, err := strconv.ParseInt(parametros["id"], 10, 64)
-	// if err != nil {
-	// 	pkgEntity.Erro(w, http.StatusBadRequest, err)
-	// 	return
-	// }
 
 	db, err := database.Connect()
 	helpers.Err(w, http.StatusInternalServerError, err)
 	defer db.Close()
 
-	new_repository := repository.NewRepositoryClient(db)
-	clients, err := new_repository.GetClient(parametros["id"])
+	new_repository := repository.NewRepositoryYourCompany(db)
+	company, err := new_repository.GetCompany(parametros["id"])
 	if err != nil {
 		pkgEntity.Erro(w, http.StatusInternalServerError, err)
 		return
 	}
 
-	pkgEntity.JSON(w, http.StatusOK, clients)
+	pkgEntity.JSON(w, http.StatusOK, company)
 }
 
-func CreateClient(w http.ResponseWriter, r *http.Request) {
+func CreateYourCompany(w http.ResponseWriter, r *http.Request) {
 
 	err := pkgEntity.AuthUserAPI(r)
 	if err != nil {
@@ -95,14 +89,14 @@ func CreateClient(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var clients models.Clients
+	var yourCompany models.YourCompany
 
-	if err := json.Unmarshal(body, &clients); err != nil {
+	if err := json.Unmarshal(body, &yourCompany); err != nil {
 		pkgEntity.Erro(w, http.StatusBadRequest, err)
 		return
 	}
 
-	if err := clients.Check(); err != nil {
+	if err := yourCompany.Check(); err != nil {
 		pkgEntity.Erro(w, http.StatusBadRequest, err)
 		return
 	}
@@ -111,20 +105,19 @@ func CreateClient(w http.ResponseWriter, r *http.Request) {
 	helpers.Err(w, http.StatusInternalServerError, err)
 	defer db.Close()
 
-	clients.Id_client = pkgEntity.GenerateNewID()
+	yourCompany.Id_company = pkgEntity.GenerateNewID()
 
-	new_repository := repository.NewRepositoryClient(db)
-	client_id, err := new_repository.CreateClient(clients)
+	new_repository := repository.NewRepositoryYourCompany(db)
+	yourCompanyID, err := new_repository.CreateCompany(yourCompany)
 	if err != nil {
 		pkgEntity.Erro(w, http.StatusBadRequest, err)
 		return
 	}
 
-	pkgEntity.JSON(w, http.StatusCreated, client_id)
+	pkgEntity.JSON(w, http.StatusCreated, yourCompanyID)
 }
 
-func UpdateClient(w http.ResponseWriter, r *http.Request) {
-
+func UpdateYourCompany(w http.ResponseWriter, r *http.Request) {
 	err := pkgEntity.AuthUserAPI(r)
 	if err != nil {
 		pkgEntity.Erro(w, http.StatusUnauthorized, err)
@@ -138,11 +131,6 @@ func UpdateClient(w http.ResponseWriter, r *http.Request) {
 	}
 
 	parametros := mux.Vars(r)
-	// uid_client, err := strconv.ParseInt(parametros["id"], 10, 64)
-	// if err != nil {
-	// 	pkgEntity.Erro(w, http.StatusBadRequest, err)
-	// 	return
-	// }
 
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
@@ -150,13 +138,13 @@ func UpdateClient(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var clients models.Clients
-	if err := json.Unmarshal(body, &clients); err != nil {
+	var company models.YourCompany
+	if err := json.Unmarshal(body, &company); err != nil {
 		pkgEntity.Erro(w, http.StatusBadRequest, err)
 		return
 	}
 
-	if err := clients.Check(); err != nil {
+	if err := company.Check(); err != nil {
 		pkgEntity.Erro(w, http.StatusBadRequest, err)
 		return
 	}
@@ -165,12 +153,12 @@ func UpdateClient(w http.ResponseWriter, r *http.Request) {
 	helpers.Err(w, http.StatusInternalServerError, err)
 	defer db.Close()
 
-	new_repository := repository.NewRepositoryClient(db)
-	err = new_repository.UpdateClient(clients, parametros["id"])
+	new_repository := repository.NewRepositoryYourCompany(db)
+	err = new_repository.UpdateCompany(company, parametros["id"])
 	if err != nil {
 		pkgEntity.Erro(w, http.StatusBadRequest, err)
 		return
 	}
 
-	pkgEntity.JSON(w, http.StatusCreated, clients)
+	pkgEntity.JSON(w, http.StatusCreated, company)
 }

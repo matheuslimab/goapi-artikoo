@@ -11,7 +11,7 @@ import (
 )
 
 type Usuario struct {
-	ID       uint64    `json:"id, omitempty"`
+	ID       string    `json:"id, omitempty"`
 	Nome     string    `nome:"nome, omitempty"`
 	Nick     string    `nick:"nick, omitempty"`
 	Email    string    `email:"email, omitempty"`

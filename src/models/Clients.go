@@ -51,7 +51,6 @@ func (t *Clients) formatar() {
 }
 
 func (t *Clients) validar() error {
-
 	if len(t.Nome_razao_social_client) > 100 {
 		return consts.ErrMaximumLengthNameClient
 	}
@@ -61,5 +60,4 @@ func (t *Clients) validar() error {
 	}
 
 	return nil
-
 }

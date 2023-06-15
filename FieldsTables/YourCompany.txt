@@ -1,0 +1,16 @@
+id_company
+razao_social
+nome_fantasia
+cnpj
+inscricao_estadual
+endereco
+telefone
+email
+site
+contato_principal
+segmento_de_atuacao
+observacao
+id_user
+created_at
+update_at
+status_company

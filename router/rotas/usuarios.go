@@ -39,30 +39,6 @@ var rotasUsuarios = []Rota{
 		RequerAutenticacao: true,
 	},
 	{
-		URI:                "/usuarios/{usuarioId}/follow",
-		Metodo:             helpers.POST,
-		Funcao:             entity.SeguirUsuario,
-		RequerAutenticacao: true,
-	},
-	{
-		URI:                "/usuarios/{usuarioId}/unfollow",
-		Metodo:             helpers.POST,
-		Funcao:             entity.UnFollow,
-		RequerAutenticacao: true,
-	},
-	{
-		URI:                "/usuarios/{usuarioId}/seguidores",
-		Metodo:             helpers.GET,
-		Funcao:             entity.GetFollowers,
-		RequerAutenticacao: true,
-	},
-	{
-		URI:                "/usuarios/{usuarioId}/seguindo",
-		Metodo:             helpers.GET,
-		Funcao:             entity.GetFollowing,
-		RequerAutenticacao: true,
-	},
-	{
 		URI:                "/usuarios/{usuarioId}/atualizar-senha",
 		Metodo:             helpers.GET,
 		Funcao:             entity.AtualizarSenha,
