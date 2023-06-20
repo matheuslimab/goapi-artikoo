@@ -113,7 +113,7 @@ func CreateYourCompany(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if result.Id_company != "" {
-		err := new_repository.UpdateCompany(yourCompany, result.Id_company)
+		err := new_repository.UpdateCompany(yourCompany, result.IdUser)
 		if err != nil {
 			pkgEntity.Erro(w, http.StatusBadRequest, err)
 			return

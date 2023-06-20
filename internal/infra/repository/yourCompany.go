@@ -150,7 +150,7 @@ func (repository *dBCompany) GetCompanies() ([]models.YourCompany, error) {
 }
 
 func (repository *dBCompany) UpdateCompany(company models.YourCompany, id string) error {
-	statement, err := repository.db.Prepare("UPDATE YourCompany SET razao_social = ?, nome_fantasia = ?, cnpj = ?, inscricao_estadual = ?, endereco = ?, telefone = ?, email = ?, site = ?, contato_principal = ?, segmento_de_atuacao = ?, observacao = ?, id_user = ?, status_company = ? WHERE id_company = ?")
+	statement, err := repository.db.Prepare("UPDATE YourCompany SET razao_social = ?, nome_fantasia = ?, cnpj = ?, inscricao_estadual = ?, endereco = ?, telefone = ?, email = ?, site = ?, contato_principal = ?, segmento_de_atuacao = ?, observacao = ?, id_user = ?, status_company = ? WHERE id_user = ?")
 	if err != nil {
 		return err
 	}
@@ -170,7 +170,7 @@ func (repository *dBCompany) UpdateCompany(company models.YourCompany, id string
 		company.Observacao,
 		company.IdUser,
 		company.StatusCompany,
-		id,
+		company.IdUser,
 	); err != nil {
 		return err
 	}
