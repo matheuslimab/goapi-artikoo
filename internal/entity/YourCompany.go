@@ -83,6 +83,10 @@ func CreateYourCompany(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	db, err := database.Connect()
+	helpers.Err(w, http.StatusInternalServerError, err)
+	defer db.Close()
+
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		pkgEntity.Erro(w, http.StatusBadRequest, err)
@@ -101,20 +105,32 @@ func CreateYourCompany(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	db, err := database.Connect()
-	helpers.Err(w, http.StatusInternalServerError, err)
-	defer db.Close()
-
-	yourCompany.Id_company = pkgEntity.GenerateNewID()
-
 	new_repository := repository.NewRepositoryYourCompany(db)
-	yourCompanyID, err := new_repository.CreateCompany(yourCompany)
+	result, err := new_repository.SelectCompanyByIdUser(yourCompany.IdUser)
 	if err != nil {
 		pkgEntity.Erro(w, http.StatusBadRequest, err)
 		return
 	}
 
-	pkgEntity.JSON(w, http.StatusCreated, yourCompanyID)
+	if result.Id_company != "" {
+		err := new_repository.UpdateCompany(yourCompany, result.Id_company)
+		if err != nil {
+			pkgEntity.Erro(w, http.StatusBadRequest, err)
+			return
+		}
+
+		pkgEntity.JSON(w, http.StatusOK, nil)
+	} else {
+		yourCompany.Id_company = pkgEntity.GenerateNewID()
+		yourCompanyID, err := new_repository.CreateCompany(yourCompany)
+		if err != nil {
+			pkgEntity.Erro(w, http.StatusBadRequest, err)
+			return
+		}
+
+		pkgEntity.JSON(w, http.StatusCreated, yourCompanyID)
+	}
+
 }
 
 func UpdateYourCompany(w http.ResponseWriter, r *http.Request) {

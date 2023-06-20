@@ -14,6 +14,39 @@ func NewRepositoryYourCompany(db *sql.DB) *dBCompany {
 	return &dBCompany{db}
 }
 
+func (repository *dBCompany) SelectCompanyByIdUser(idUser string) (models.YourCompany, error) {
+	rows, err := repository.db.Query("SELECT id_company, razao_social, nome_fantasia, cnpj, inscricao_estadual, endereco, telefone, email, site, contato_principal, segmento_de_atuacao, observacao, id_user, status_company FROM YourCompany WHERE id_user = ?", idUser)
+	if err != nil {
+		return models.YourCompany{}, err
+	}
+	defer rows.Close()
+
+	var company models.YourCompany
+
+	for rows.Next() {
+		if err := rows.Scan(
+			&company.Id_company,
+			&company.RazaoSocial,
+			&company.NomeFantasia,
+			&company.Cnpj,
+			&company.InscricaoEstadual,
+			&company.Endereco,
+			&company.Telefone,
+			&company.Email,
+			&company.Site,
+			&company.ContatoPrincipal,
+			&company.SegmentoDeAtuacao,
+			&company.Observacao,
+			&company.IdUser,
+			&company.StatusCompany,
+		); err != nil {
+			return models.YourCompany{}, err
+		}
+	}
+
+	return company, nil
+}
+
 func (repository *dBCompany) CreateCompany(company models.YourCompany) (string, error) {
 
 	statament, err := repository.db.Prepare("INSERT INTO YourCompany (id_company, razao_social, nome_fantasia, cnpj, inscricao_estadual, endereco, telefone, email, site, contato_principal, segmento_de_atuacao, observacao, id_user, status_company) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")
