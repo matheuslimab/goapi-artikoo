@@ -79,7 +79,7 @@ func (repository *dBCompany) CreateCompany(company models.YourCompany) (string, 
 }
 
 func (repository *dBCompany) GetCompany(id string) (models.YourCompany, error) {
-	rows, err := repository.db.Query("SELECT id_company, razao_social, nome_fantasia, cnpj, inscricao_estadual, endereco, telefone, email, site, contato_principal, segmento_de_atuacao, observacao, id_user, status_company FROM YourCompany WHERE id_company = ?", id)
+	rows, err := repository.db.Query("SELECT id_company, razao_social, nome_fantasia, cnpj, inscricao_estadual, endereco, telefone, email, site, contato_principal, segmento_de_atuacao, observacao, id_user, status_company FROM YourCompany WHERE id_user = ?", id)
 	if err != nil {
 		return models.YourCompany{}, err
 	}
