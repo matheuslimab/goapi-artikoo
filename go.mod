@@ -11,3 +11,8 @@ require (
 	github.com/joho/godotenv v1.5.1
 	golang.org/x/crypto v0.7.0
 )
+
+require (
+	github.com/nfnt/resize v0.0.0-20180221191011-83c6a9932646 // indirect
+	github.com/olahol/go-imageupload v1.0.1 // indirect
+)
