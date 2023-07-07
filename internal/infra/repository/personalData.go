@@ -2,6 +2,7 @@ package repository
 
 import (
 	"database/sql"
+	"fmt"
 
 	"github.com/matheuslimab/artikoo/api/src/models"
 )
@@ -78,16 +79,16 @@ func (repository *dbRepositoryPersonalData) CreatePersonalData(personalData mode
 
 func (repository *dbRepositoryPersonalData) GetPersonalData(id string) (models.PersonalData, error) {
 
-	var personalData models.PersonalData
-
-	rows, err := repository.db.Query("SELECT * FROM PersonalData WHERE idUser_dataUser = ?", id)
+	rows, err := repository.db.Query("SELECT idPersonalData_dataUser, name_dataUser, email_dataUser, cpf_dataUser, rg_dataUser, dataNascimento_dataUser, cargo_dataUser, timeDeparture_DataUser, aboutMe_dataUser, ausencia_dataUser, genero_dataUser, endereco_dataUser, idUser_dataUser FROM PersonalData WHERE idUser_dataUser = ?", id)
 	if err != nil {
-		return personalData, err
+		return models.PersonalData{}, err
 	}
 	defer rows.Close()
 
-	if rows.Next() {
-		if err = rows.Scan(
+	var personalData models.PersonalData
+
+	for rows.Next() {
+		if err := rows.Scan(
 			&personalData.IdPersonalData,
 			&personalData.Name,
 			&personalData.Email,
@@ -101,12 +102,12 @@ func (repository *dbRepositoryPersonalData) GetPersonalData(id string) (models.P
 			&personalData.Genero,
 			&personalData.EnderecoPessoal,
 			&personalData.IdUser,
-			&personalData.Created_At,
-			&personalData.Updated_At,
 		); err != nil {
-			return personalData, err
+			return models.PersonalData{}, err
 		}
 	}
+
+	fmt.Println(personalData)
 
 	return personalData, nil
 }
