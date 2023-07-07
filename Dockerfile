@@ -7,4 +7,4 @@ RUN go build -o main .
 
 FROM nginx
 COPY --from=builderApp /app/main /main
-CMD ["/main"]
+CMD ["/app/main"]
