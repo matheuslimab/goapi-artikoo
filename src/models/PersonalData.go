@@ -112,31 +112,31 @@ func (p *PersonalData) validate() error {
 		return consts.ErrMinLengthEmailPersonalData
 	}
 
-	if len(p.Cpf) <= consts.MinimumLengthCpfPersonalData {
+	if len(p.Cpf) < consts.MinimumLengthCpfPersonalData {
 		return consts.ErrMinLengthCpfPersonalData
 	}
 
-	if len(p.Rg) <= consts.MinimumLengthRgPersonalData {
+	if len(p.Rg) < consts.MinimumLengthRgPersonalData {
 		return consts.ErrMinLengthRgPersonalData
 	}
 
-	if len(p.DataNascimento) <= consts.MinimumLengthDataNascimentoPersonalData {
+	if len(p.DataNascimento) < consts.MinimumLengthDataNascimentoPersonalData {
 		return consts.ErrMinLengthDataNascimentoPersonalData
 	}
 
-	if len(p.Cargo) <= consts.MinimumLengthCargoPersonalData {
+	if len(p.Cargo) < consts.MinimumLengthCargoPersonalData {
 		return consts.ErrMinLengthCargoPersonalData
 	}
 
-	if len(p.TimeDeparture) <= consts.MinimumLengthTimeDeparturePersonalData {
+	if len(p.TimeDeparture) < consts.MinimumLengthTimeDeparturePersonalData {
 		return consts.ErrMinLengthTimeDeparturePersonalData
 	}
 
-	if len(p.AboutMe) <= consts.MinimumLengthAboutMePersonalData {
+	if len(p.AboutMe) < consts.MinimumLengthAboutMePersonalData {
 		return consts.ErrMinLengthAboutMePersonalData
 	}
 
-	if len(p.EnderecoPessoal) <= consts.MinimumLengthEnderecoPessoalPersonalData {
+	if len(p.EnderecoPessoal) < consts.MinimumLengthEnderecoPessoalPersonalData {
 		return consts.ErrMinLengthEnderecoPessoalPersonalData
 	}
 
