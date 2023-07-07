@@ -7,5 +7,4 @@ RUN GOOS=linux GOARCH=amd64  go build -o main .
 
 FROM scratch
 COPY --from=builderApp /app/main /main
-# CMD ["/main"]
-ENTRYPOINT [ "/main" ]
+CMD ["/main"]
