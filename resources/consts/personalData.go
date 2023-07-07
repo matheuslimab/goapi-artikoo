@@ -96,8 +96,8 @@ var (
 
 	MinimumLengthNamePersonalData            = 3
 	MinimumLengthEmailPersonalData           = 5
-	MinimumLengthCpfPersonalData             = 8
-	MinimumLengthRgPersonalData              = 5
+	MinimumLengthCpfPersonalData             = 14
+	MinimumLengthRgPersonalData              = 10
 	MinimumLengthDataNascimentoPersonalData  = 3
 	MinimumLengthCargoPersonalData           = 3
 	MinimumLengthTimeDeparturePersonalData   = 3

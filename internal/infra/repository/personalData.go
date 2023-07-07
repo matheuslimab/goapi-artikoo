@@ -80,20 +80,14 @@ func (repository *dbRepositoryPersonalData) GetPersonalData(id string) (models.P
 
 	var personalData models.PersonalData
 
-	statament, err := repository.db.Prepare("SELECT * FROM PersonalData WHERE idPersonalData_dataUser = ?")
+	rows, err := repository.db.Query("SELECT * FROM PersonalData WHERE idUser_dataUser = ?", id)
 	if err != nil {
 		return personalData, err
 	}
-	defer statament.Close()
+	defer rows.Close()
 
-	linha, erro := statament.Query(id)
-	if erro != nil {
-		return personalData, err
-	}
-	defer linha.Close()
-
-	if linha.Next() {
-		if erro = linha.Scan(
+	if rows.Next() {
+		if err = rows.Scan(
 			&personalData.IdPersonalData,
 			&personalData.Name,
 			&personalData.Email,
@@ -109,7 +103,7 @@ func (repository *dbRepositoryPersonalData) GetPersonalData(id string) (models.P
 			&personalData.IdUser,
 			&personalData.Created_At,
 			&personalData.Updated_At,
-		); erro != nil {
+		); err != nil {
 			return personalData, err
 		}
 	}

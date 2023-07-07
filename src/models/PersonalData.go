@@ -104,11 +104,11 @@ func (p *PersonalData) validate() error {
 
 	// minimum
 
-	if len(p.Name) <= consts.MinimumLengthNamePersonalData {
+	if len(p.Name) < consts.MinimumLengthNamePersonalData {
 		return consts.ErrMinLengthNamePersonalData
 	}
 
-	if len(p.Email) <= consts.MinimumLengthEmailPersonalData {
+	if len(p.Email) < consts.MinimumLengthEmailPersonalData {
 		return consts.ErrMinLengthEmailPersonalData
 	}
 
