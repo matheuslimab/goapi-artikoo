@@ -6,7 +6,7 @@ COPY . /app
 
 RUN go build -o server
 
-FROM gcr.io/distroless/base-debian11
+FROM nginx
 
 WORKDIR /
 
