@@ -1,7 +1,18 @@
-FROM golang:1.20 
-RUN mkdir app/
-ADD . /app
+FROM golang:1.20 AS build
+
 WORKDIR /app
 
-RUN go build -o main .
-CMD ["/app/main"]
+COPY .env /app
+COPY . /app
+
+RUN go build -o server
+
+FROM ubuntu:22.04
+
+WORKDIR /
+
+COPY --from=build /app/server /server
+
+EXPOSE 8080
+
+ENTRYPOINT [ "/server" ]

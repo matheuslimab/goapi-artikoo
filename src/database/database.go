@@ -3,21 +3,19 @@ package database
 import (
 	"database/sql"
 	"fmt"
-	"os"
 
 	"github.com/matheuslimab/artikoo/api/config"
 
 	_ "github.com/go-sql-driver/mysql"
 )
 
-var production = true
 var stringConnec string
 
 func Connect() (*sql.DB, error) {
 
-	if production {
+	if config.ProductionServer {
 		// conexao remota
-		stringConnec = os.Getenv("STRING_REMOTE")
+		stringConnec = config.StringRemoteDb
 	} else {
 		// conexao local
 		stringConnec = config.StringConexaoBanco
@@ -28,7 +26,7 @@ func Connect() (*sql.DB, error) {
 		return nil, err
 	}
 
-	if production {
+	if config.ProductionServer {
 		fmt.Println("A conexao ao banco de dados remota esta pronta!")
 	}
 
