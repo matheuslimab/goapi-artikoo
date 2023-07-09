@@ -6,7 +6,7 @@ COPY . /app
 
 RUN go build -o server
 
-FROM ubuntu:22.04
+FROM gcr.io/distroless/base-debian11
 
 WORKDIR /
 
