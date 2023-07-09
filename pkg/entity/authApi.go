@@ -2,8 +2,8 @@ package entity
 
 import (
 	"net/http"
-	"os"
 
+	"github.com/matheuslimab/artikoo/api/config"
 	"github.com/matheuslimab/artikoo/api/resources/consts"
 )
 
@@ -20,7 +20,7 @@ func AuthUserAPI(r *http.Request) error {
 func AuthorizeHeaderRequest(w http.ResponseWriter, r *http.Request) error {
 	xAuthApiCrm := r.Header.Get("X-AUTH-API-CRM")
 
-	if xAuthApiCrm != os.Getenv("API_KEY") {
+	if xAuthApiCrm != config.Api_key {
 		return consts.ErrAuthApiKeyAPI
 	}
 

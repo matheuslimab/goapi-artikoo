@@ -5,6 +5,7 @@ const (
 	Db_user          = "root"
 	Db_password      = "8512WEdfr"
 	DB_name          = "devbook"
+	PortServer       = 8080
 
 	// conexao remota com o banco de dados
 	StringRemoteDb = "u425803535_artikoouser:8512WEdfr@@tcp(185.239.210.103)/u425803535_artikooservic?parseTime=true"

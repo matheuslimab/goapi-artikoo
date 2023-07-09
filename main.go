@@ -11,9 +11,9 @@ import (
 
 func main() {
 	config.LoadConfigs()
-	fmt.Println("Starter API on PORT: ", config.Porta)
+	fmt.Println("Starter API on PORT: ", config.PortServer)
 
 	r := router.Gerar()
 
-	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", config.Porta), r))
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", config.PortServer), r))
 }
